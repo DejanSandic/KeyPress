@@ -3,11 +3,11 @@
 
 // IIFE which creates separate namespace for our code
 (function(global){
-	'use strict';//Run the next code in the strict environment
+	'use strict';//Run the next code in the strict mode
 
 	// Define onKey function
 	function onKey (key, callback, delay, element) {
-		// If provided element is not an object set document as its value
+		// If provided element is not an object set the document default value
 		typeof element === 'object' ? element = element : element = document;
 
 		// Throw an error if the first argument is not a string
