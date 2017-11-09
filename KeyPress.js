@@ -6,9 +6,11 @@
 	'use strict';//Run the next code in the strict mode
 
 	// Define onKey function
-	function onKey (key, callback, delay, element) {
+	function onKey (key, callback, delay, element, direction) {
 		// If provided element is not an object set the document default value
 		typeof element === 'object' ? element = element : element = document;
+		// If direction argument is not provided, keypress is set as default
+		direction = direction || 'keypress';
 
 		// Throw an error if the first argument is not a string
 		if (typeof key !== 'string') {
@@ -30,7 +32,7 @@
 
 
 		// Add keypress listener to our event
-		element.addEventListener('keypress', function(e) {
+		element.addEventListener(direction, function(e) {
 			// Check does event code matches our key argument
 			if (key.toLowerCase() === e.code.toLowerCase()) {
 				// If delay is specified create setTimeout() and call the
@@ -47,6 +49,12 @@
 		});
 	}
 
+	function onKeyUp (key, callback, delay) {
+		// If delay is not set, set it to null
+		delay = delay || null;
+		onKey(key, callback, delay, document, 'keyup');
+	}
+
 	// Define onElement function
 	function onElement (element){
 		// If element is not provided, set it to document
@@ -54,12 +62,23 @@
 		// Return an object with one onKey method
 		return {
 			// Define a method which takes the same arguments as onKey function
+			// and runs a callback function on the key press
 			onKey: function (key, callback, delay) {
 				// If delay is not set, set it to null
 				delay = delay || null;
 				// Invoke onKey function providing all 3 arguments from onKey method
 				// and selected element as 4th argument
 				onKey(key, callback, delay, element);
+			},
+
+			// Define a method which takes the same arguments as onKey function
+			// and runs a callback function on the release of the key
+			onKeyUp: function (key, callback, delay) {
+				// If delay is not set, set it to null
+				delay = delay || null;
+				// Invoke onKey function providing all 3 arguments from onKey method
+				// and selected element as 4th argument
+				onKey(key, callback, delay, element, 'keyup');
 			}
 		}
 	};
@@ -76,6 +95,7 @@
 
 	// Add the functions to the window object 
 	global.onKey = onKey;
+	global.onKeyUp = onKeyUp;
 	global.onElement = onElement;
 	global.showKeys = showKeys;
 })(window);
