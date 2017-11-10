@@ -43,6 +43,13 @@ Or inline with arrow function:
 ```js
 onKey('space', () => console.log('Hello world!'), 3000);
 ```
+NOTE -- Name of the key is not case sensitive, so any of these examples will work:
+```js
+onKey('space', () => console.log('Hello world!'), 3000);
+onKey('SPACE', () => console.log('Hello world!'), 3000);
+onKey('Space', () => console.log('Hello world!'), 3000);
+onKey('sPaCe', () => console.log('Hello world!'), 3000);
+```
 ### How to work with keyboard events, on a specific element?
 Function `onKey` adds an event listener to our document. But what if we want to capture press of the Enter key only if the input field is selected at that moment? <br /><br />
 KeyPress solves this issue by providing us with the `onElement`. This function takes the element as the argument, and then it returns `onKey` method which we then can use like in the previous example. <br /><br />
