@@ -9,7 +9,7 @@ KeyPress does not contain key mapping object. Instead, it relies on the "code" p
 Other browsers may not have the "code" property on the KeyboardEvent object, therefore there is no guarantee KeyPress will work on any other browser. <br /><br /><br />
 
 ## Installation
-For testing purposes, you can link this library to your HTML via CDN:<br />
+For testing purposes, you can link this library to your HTML via CDN (not real CDN):<br />
 ```html
 <script src="http://cdn.dejansandic.com/js/KeyPress.js" type="text/javascript"></script>
 ```
